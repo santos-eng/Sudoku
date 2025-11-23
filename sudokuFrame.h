@@ -6,7 +6,7 @@
 class SudokuFrame : public QAbstractTableModel
 {
     Q_OBJECT
-    int board[9][9];
+    int board[9][9] = {};
 public:
     explicit SudokuFrame(QObject *parent = nullptr);
 
