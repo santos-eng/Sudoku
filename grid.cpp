@@ -2,11 +2,21 @@
 #include "./ui_grid.h"
 #include "sudokuFrame.h"
 
+// To do, make it so that the highlighted cell is a different colour, grey when selected or dark blue if a set cell
+// Insert the dark colum borders
+
+// Then recognise issues with red highlight
+
+// Recognise Success
+
+
 grid::grid(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::grid)
 {
     ui->setupUi(this); // contains pointers to the widgets
+
+    ui->easyRadio->setChecked(true);
 
     auto* model = new SudokuFrame(this); // create the frame, with grid as the parent
     ui->tableView->setModel(model); // table view uses the SudokuFrame as its data sources
@@ -16,9 +26,41 @@ grid::grid(QWidget *parent)
 
     ui->tableView->horizontalHeader()->hide();
     ui->tableView->verticalHeader()->hide();
+
+    QFont font = ui->tableView->font();
+    font.setPointSize(24);
+    ui->tableView->setFont(font);
 }
 
 grid::~grid()
 {
     delete ui;
 }
+
+void grid::on_loadPuzzleBtn_clicked()
+{
+    SudokuFrame* model = qobject_cast<SudokuFrame*>(ui->tableView->model());
+    if (!model) {
+        qWarning() << "Model is not SudokuFrame."; // in the application output
+    }
+
+    QString difficulty;
+    if (ui->easyRadio->isChecked())
+        difficulty = "easy";
+    else if (ui->mediumRadio->isChecked())
+        difficulty = "medium";
+    else
+        difficulty = "hard";
+
+    QString folder = QCoreApplication::applicationDirPath() + "/testPuzzles/" + difficulty + ".txt";
+
+    QFile file(folder);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, "Error", "Couldn't open puzzle file:\n" + folder);
+        return;
+    }
+
+    QString initialBoard = file.readAll();
+    model->loadFromInitConditions(initialBoard);
+}
+

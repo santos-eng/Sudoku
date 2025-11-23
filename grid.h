@@ -2,6 +2,8 @@
 #define GRID_H
 
 #include <QMainWindow>
+#include <QFile>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -16,6 +18,9 @@ class grid : public QMainWindow
 public:
     grid(QWidget *parent = nullptr);
     ~grid();
+
+private slots:
+    void on_loadPuzzleBtn_clicked();
 
 private:
     Ui::grid *ui;

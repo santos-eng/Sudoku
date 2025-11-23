@@ -2,11 +2,14 @@
 #define SUDOKUFRAME_H
 
 #include <QAbstractTableModel>
+#include <QBrush>
+#include <QFont>
 
 class SudokuFrame : public QAbstractTableModel
 {
     Q_OBJECT
     int board[9][9] = {};
+    bool fixed[9][9] = {};
 public:
     explicit SudokuFrame(QObject *parent = nullptr);
 
@@ -22,6 +25,8 @@ public:
 
     // What is allowed in each cell
     Qt::ItemFlags flags(const QModelIndex &index) const override;
-};
 
+    void clearBoard();
+    void loadFromInitConditions(const QString& initialBoard);
+};
 #endif // SUDOKUFRAME_H
