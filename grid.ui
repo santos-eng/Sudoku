@@ -6,23 +6,40 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>803</width>
+    <height>602</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>grid</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>541</width>
+      <height>511</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>803</width>
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuSudo">
+    <property name="title">
+     <string>Sudo</string>
+    </property>
+   </widget>
+   <addaction name="menuSudo"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
