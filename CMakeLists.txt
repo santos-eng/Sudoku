@@ -70,3 +70,11 @@ install(TARGETS Sudoku
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(Sudoku)
 endif()
+
+add_custom_target(copy_puzzles ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/testPuzzles
+        ${CMAKE_BINARY_DIR}/testPuzzles
+)
+
+add_dependencies(Sudoku copy_puzzles)
