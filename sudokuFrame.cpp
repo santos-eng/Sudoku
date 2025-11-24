@@ -16,10 +16,20 @@ int SudokuFrame::columnCount(const QModelIndex &parent) const {
 // Cell appearance
 QVariant SudokuFrame::data(const QModelIndex &index, int role) const {
     int r = index.row(), c = index.column();
+
     if (role == Qt::TextAlignmentRole)
         return QVariant(Qt::AlignHCenter | Qt::AlignVCenter);
 
     if (role == Qt::BackgroundRole) {
+        auto *view = qobject_cast<QAbstractItemView*>(parent()); // parent() returns grid*
+
+        if (view && view->selectionModel()) {
+            QModelIndex currSelected = view->selectionModel()->currentIndex(); // selection model is a pointer for selecting in the table
+            if (currSelected == index) {
+                return QBrush(QColor(137, 140, 138));
+            }
+        }
+
         if (fixed[r][c])
             return QBrush(QColor(23, 197, 255));
         else

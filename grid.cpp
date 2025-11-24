@@ -30,6 +30,14 @@ grid::grid(QWidget *parent)
     QFont font = ui->tableView->font();
     font.setPointSize(24);
     ui->tableView->setFont(font);
+
+    // Ensure that navigating the grid with the mouse or arrow keys calls shading updates
+    // connect(Qobj* sender, func1 signal, QObj* receiver, func2 slot)
+    connect(ui->tableView->selectionModel(), &QItemSelectionModel::currentChanged, this,
+            [this](const QModelIndex &, const QModelIndex &) { // currentChanged has the addresses of current and previous selections
+                ui->tableView->viewport()->update();
+            }
+    );
 }
 
 grid::~grid()

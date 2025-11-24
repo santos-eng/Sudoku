@@ -4,6 +4,7 @@
 #include <QAbstractTableModel>
 #include <QBrush>
 #include <QFont>
+#include <QAbstractItemView>
 
 class SudokuFrame : public QAbstractTableModel
 {
