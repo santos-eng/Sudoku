@@ -13,6 +13,11 @@ int SudokuFrame::columnCount(const QModelIndex &parent) const {
     return 9;
 }
 
+bool SudokuFrame::cellInvalid(const int r, const int c) const {
+    int boxId = (r/3) * 3 + (c/3);
+    return invalRow[r] || invalCol[c] || invalBox[boxId];
+}
+
 // Cell appearance
 QVariant SudokuFrame::data(const QModelIndex &index, int role) const {
     int r = index.row(), c = index.column();
@@ -21,17 +26,39 @@ QVariant SudokuFrame::data(const QModelIndex &index, int role) const {
         return QVariant(Qt::AlignHCenter | Qt::AlignVCenter);
 
     if (role == Qt::BackgroundRole) {
+        // Selected Cells
         if (view && view->selectionModel()) {
             QModelIndex currSelected = view->selectionModel()->currentIndex(); // selection model is a pointer for selecting in the table
+            if (currSelected == index && fixed[r][c]) {
+                if (cellInvalid(r,c))
+                    return QBrush(QColor(74, 1, 5)); // dark red
+                if (state == Validator::State::Complete)
+                    return QBrush(QColor(1, 66, 12)); // dark green
+                return QBrush(QColor(2, 70, 227)); // dark blue
+            }
+            // Free
             if (currSelected == index) {
-                return QBrush(QColor(137, 140, 138));
+                if (cellInvalid(r,c))
+                    return QBrush(QColor(204, 0, 24)); // medium red
+                if (state == Validator::State::Complete)
+                    return QBrush(QColor(3, 135, 34)); // medium green
+                return QBrush(QColor(137, 140, 138)); // grey
             }
         }
 
-        if (fixed[r][c])
-            return QBrush(QColor(23, 197, 255)); // Light blue
-        else
-            return QBrush(QColor(255, 255, 255));
+        // Unselected Cells
+        if (fixed[r][c]) {
+            if (cellInvalid(r,c))
+                return QBrush(QColor(140, 1, 18)); // red
+            if (state == Validator::State::Complete)
+                return QBrush(QColor(7, 94, 1)); // dark green
+            return QBrush(QColor(74, 161, 255)); // light blue
+        }
+        if (cellInvalid(r,c))
+            return QBrush(QColor(247, 99, 99)); // red
+        if (state == Validator::State::Complete)
+            return QBrush(QColor(8, 252, 48)); // light green
+        return QBrush(QColor(255, 255, 255)); // white
     }
 
     if (role == Qt::ForegroundRole) {
@@ -63,9 +90,10 @@ bool SudokuFrame::setData(const QModelIndex &index, const QVariant &value, int r
     if (value.toInt() < 0 || value.toInt() > 9)
         return false;
 
-
     board[index.row()][index.column()] = value.toInt();
-    emit dataChanged(index,index); // signal that change has occured.
+    state = Validator::isValid(board,invalRow,invalCol,invalBox);
+
+    emit dataChanged(this->index(0,0),this->index(8,8)); // signal that change has occured.
     return true;
 }
 

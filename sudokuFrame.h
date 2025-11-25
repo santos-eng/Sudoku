@@ -5,6 +5,7 @@
 #include <QBrush>
 #include <QFont>
 #include <QAbstractItemView>
+#include "validator.h"
 
 class SudokuFrame : public QAbstractTableModel
 {
@@ -12,6 +13,9 @@ class SudokuFrame : public QAbstractTableModel
     int board[9][9] = {};
     bool fixed[9][9] = {};
     QAbstractItemView* view = nullptr;
+    Validator::State state;
+    std::array<bool,9> invalRow{}, invalCol{}, invalBox{}; // boxes are [[0,1,2],[3,4,5],[6,7,8]] each having 9 cells
+    bool cellInvalid(const int r, const int c) const;
 public:
     explicit SudokuFrame(QObject *parent = nullptr);
 
