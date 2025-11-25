@@ -57,7 +57,7 @@ QVariant SudokuFrame::data(const QModelIndex &index, int role) const {
         if (cellInvalid(r,c))
             return QBrush(QColor(247, 99, 99)); // red
         if (state == Validator::State::Complete)
-            return QBrush(QColor(8, 252, 48)); // light green
+            return QBrush(QColor(117, 250, 117)); // light green
         return QBrush(QColor(255, 255, 255)); // white
     }
 
