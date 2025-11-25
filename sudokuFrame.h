@@ -11,6 +11,7 @@ class SudokuFrame : public QAbstractTableModel
     Q_OBJECT
     int board[9][9] = {};
     bool fixed[9][9] = {};
+    QAbstractItemView* view = nullptr;
 public:
     explicit SudokuFrame(QObject *parent = nullptr);
 
@@ -26,6 +27,8 @@ public:
 
     // What is allowed in each cell
     Qt::ItemFlags flags(const QModelIndex &index) const override;
+
+    void setView(QAbstractItemView* view);
 
     void clearBoard();
     void loadFromInitConditions(const QString& initialBoard);

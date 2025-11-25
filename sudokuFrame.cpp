@@ -21,8 +21,6 @@ QVariant SudokuFrame::data(const QModelIndex &index, int role) const {
         return QVariant(Qt::AlignHCenter | Qt::AlignVCenter);
 
     if (role == Qt::BackgroundRole) {
-        auto *view = qobject_cast<QAbstractItemView*>(parent()); // parent() returns grid*
-
         if (view && view->selectionModel()) {
             QModelIndex currSelected = view->selectionModel()->currentIndex(); // selection model is a pointer for selecting in the table
             if (currSelected == index) {
@@ -31,7 +29,7 @@ QVariant SudokuFrame::data(const QModelIndex &index, int role) const {
         }
 
         if (fixed[r][c])
-            return QBrush(QColor(23, 197, 255));
+            return QBrush(QColor(23, 197, 255)); // Light blue
         else
             return QBrush(QColor(255, 255, 255));
     }
@@ -77,6 +75,10 @@ Qt::ItemFlags SudokuFrame::flags(const QModelIndex &index) const {
         return Qt::ItemIsSelectable | Qt::ItemIsEnabled;
 
     return Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable;
+}
+
+void SudokuFrame::setView(QAbstractItemView* view) {
+    this->view = view;
 }
 
 void SudokuFrame::clearBoard() {

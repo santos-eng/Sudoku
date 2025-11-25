@@ -20,6 +20,7 @@ grid::grid(QWidget *parent)
 
     auto* model = new SudokuFrame(this); // create the frame, with grid as the parent
     ui->tableView->setModel(model); // table view uses the SudokuFrame as its data sources
+    model->setView(ui->tableView); // Model has pointer to view it is used by
 
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); // Fill the widget
     ui->tableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
