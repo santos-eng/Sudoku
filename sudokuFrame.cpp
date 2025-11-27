@@ -52,13 +52,13 @@ QVariant SudokuFrame::data(const QModelIndex &index, int role) const {
             if (cellInvalid(r,c))
                 return QBrush(QColor(140, 1, 18)); // red
             if (state == Validator::State::Complete)
-                return QBrush(QColor(7, 94, 1)); // dark green
+                return QBrush(QColor(73, 207, 45)); // dark green
             return QBrush(QColor(74, 161, 255)); // light blue
         }
         if (cellInvalid(r,c))
             return QBrush(QColor(247, 99, 99)); // red
         if (state == Validator::State::Complete)
-            return QBrush(QColor(117, 250, 117)); // light green
+            return QBrush(QColor(184, 242, 172)); // light green
         return QBrush(QColor(255, 255, 255)); // white
     }
 
@@ -116,6 +116,8 @@ void SudokuFrame::clearBoard() {
             board[r][c] = 0;
             fixed[r][c] = false;
         }
+    state = Validator::isValid(board,invalRow,invalCol,invalBox);
+    emit dataChanged(this->index(0,0),this->index(8,8)); // clear shading
 
 }
 
@@ -144,7 +146,10 @@ void SudokuFrame::loadFromInitConditions(const QString& initialBoard) {
 }
 
 void SudokuFrame::autoSolve() {
-    Solver::backtrackSolve(board);
+    Solver s;
+    s.backtrackSolve(board);
+
+    state = Validator::isValid(board,invalRow,invalCol,invalBox); // update colours
     emit dataChanged(this->index(0,0),this->index(8,8));
 }
 

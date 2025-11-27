@@ -73,6 +73,7 @@ void grid::on_loadPuzzleBtn_clicked()
 
 void grid::on_solveBtn_clicked()
 {
-
+    SudokuFrame* model = qobject_cast<SudokuFrame*>(ui->tableView->model());
+    model->autoSolve();
 }
 

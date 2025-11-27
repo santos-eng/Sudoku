@@ -15,7 +15,7 @@ class SudokuFrame : public QAbstractTableModel
     std::array<std::array<bool,9>,9> fixed{};
     QAbstractItemView* view = nullptr;
     Validator::State state;
-    std::array<bool,9> invalRow{}, invalCol{}, invalBox{}; // boxes are [[0,1,2],[3,4,5],[6,7,8]] each having 9 cells
+    std::array<bool,9> invalRow{}, invalCol{}, invalBox{}; // for fast lookup during colouring
     bool cellInvalid(const int r, const int c) const;
 public:
     explicit SudokuFrame(QObject *parent = nullptr);

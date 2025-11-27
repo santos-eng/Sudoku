@@ -4,10 +4,17 @@
 
 class Solver
 {
+    // Bitmasks to quickly check validity
+    std::array<int,9> rowStore{};
+    std::array<int,9> colStore{};
+    std::array<int,9> boxStore{};
+    bool validLookup(const int r, const int c, const int bit) const;
+    bool backtrack(std::array<std::array<int,9>,9>& board, int r, int c);
 public:
     Solver();
+
     //Function used for solving the algoirthm, were speed is important
-    static void backtrackSolve(std::array<std::array<int,9>,9>& board);
+    void backtrackSolve(std::array<std::array<int,9>,9>& board);
 };
 
 #endif // SOLVER_H
