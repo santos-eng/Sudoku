@@ -22,6 +22,8 @@ public:
 private slots:
     void on_loadPuzzleBtn_clicked();
 
+    void on_solveBtn_clicked();
+
 private:
     Ui::grid *ui;
 };

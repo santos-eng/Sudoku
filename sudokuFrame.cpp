@@ -1,4 +1,5 @@
 #include "sudokuFrame.h"
+#include "solver.h"
 
 SudokuFrame::SudokuFrame(QObject *parent)
     : QAbstractTableModel{parent}
@@ -139,7 +140,12 @@ void SudokuFrame::loadFromInitConditions(const QString& initialBoard) {
         }
     }
 
-    emit dataChanged(index(0,0),index(8,8)); // Indicate that the whole board needs refreshing
+    emit dataChanged(this->index(0,0),this->index(8,8)); // Indicate that the whole board needs refreshing
+}
+
+void SudokuFrame::autoSolve() {
+    Solver::backtrackSolve(board);
+    emit dataChanged(this->index(0,0),this->index(8,8));
 }
 
 

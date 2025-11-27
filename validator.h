@@ -11,7 +11,8 @@ public:
         Complete,
         Invalid
     };
-    static State isValid(const int board[9][9], std::array<bool,9>& invalRow,
+    // Function used for validating during user input. Speed not priority for human solving.
+    static State isValid(const std::array<std::array<int,9>,9>& board, std::array<bool,9>& invalRow,
                  std::array<bool,9>& invalCol, std::array<bool,9>& invalBox);
 };
 

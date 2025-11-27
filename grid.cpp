@@ -49,9 +49,6 @@ grid::~grid()
 void grid::on_loadPuzzleBtn_clicked()
 {
     SudokuFrame* model = qobject_cast<SudokuFrame*>(ui->tableView->model());
-    if (!model) {
-        qWarning() << "Model is not SudokuFrame."; // in the application output
-    }
 
     QString difficulty;
     if (ui->easyRadio->isChecked())
@@ -71,5 +68,11 @@ void grid::on_loadPuzzleBtn_clicked()
 
     QString initialBoard = file.readAll();
     model->loadFromInitConditions(initialBoard);
+}
+
+
+void grid::on_solveBtn_clicked()
+{
+
 }
 

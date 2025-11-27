@@ -76,6 +76,19 @@
      <string>Load Puzzle</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="solveBtn">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>320</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Auto Solve</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

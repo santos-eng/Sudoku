@@ -4,7 +4,7 @@
 Validator::Validator() {}
 
 // See LEETCODE 271, Valid Sudoku
-Validator::State Validator::isValid(const int board[9][9], std::array<bool,9>& invalRow,
+Validator::State Validator::isValid(const std::array<std::array<int,9>,9>& board, std::array<bool,9>& invalRow,
                         std::array<bool,9>& invalCol, std::array<bool,9>& invalBox) {
     int n = 9;
     invalRow.fill(false);
