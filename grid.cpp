@@ -1,6 +1,7 @@
 #include "grid.h"
 #include "./ui_grid.h"
 #include "sudokuFrame.h"
+#include <chrono>
 
 // To do, make it so that the highlighted cell is a different colour, grey when selected or dark blue if a set cell
 // Insert the dark colum borders
@@ -74,6 +75,7 @@ void grid::on_loadPuzzleBtn_clicked()
 void grid::on_solveBtn_clicked()
 {
     SudokuFrame* model = qobject_cast<SudokuFrame*>(ui->tableView->model());
-    model->autoSolve();
+    std::chrono::duration<double, std::milli> solveTime = model->autoSolve();
+    ui->autoSolveTimeLbl->setText(QString::number(solveTime.count())); // count is number of millisecond ticks
 }
 

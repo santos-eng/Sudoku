@@ -8,6 +8,7 @@
 #include <array>
 #include "validator.h"
 
+
 class SudokuFrame : public QAbstractTableModel
 {
     Q_OBJECT
@@ -37,6 +38,6 @@ public:
 
     void clearBoard();
     void loadFromInitConditions(const QString& initialBoard);
-    void autoSolve();
+    std::chrono::duration<double, std::milli> autoSolve();
 };
 #endif // SUDOKUFRAME_H
