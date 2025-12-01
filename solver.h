@@ -4,19 +4,20 @@
 
 class Solver
 {
+    bool foundOneSol = false;
+
+    bool backtrack(std::array<std::array<int,9>,9>& board, int r, int c);
+    bool checkMultiSol(std::array<std::array<int,9>,9>& board, int r, int c);
+public:
+    Solver();
     // Bitmasks to quickly check validity
     std::array<int,9> rowStore{};
     std::array<int,9> colStore{};
     std::array<int,9> boxStore{};
 
-    bool foundOneSol = false;
     bool validLookup(const int r, const int c, const int bit) const;
-    bool backtrack(std::array<std::array<int,9>,9>& board, int r, int c);
     void cleanBitmasks();
     void loadBitmasks(std::array<std::array<int,9>,9>& board);
-    bool checkMultiSol(std::array<std::array<int,9>,9>& board, int r, int c);
-public:
-    Solver();
 
     //Function used for solving the algoirthm, were speed is important
     bool backtrackSolve(std::array<std::array<int,9>,9>& board);

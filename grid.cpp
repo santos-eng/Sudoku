@@ -69,9 +69,19 @@ void grid::on_loadPuzzleBtn_clicked()
             return;
         }
         initialBoard = file.readAll();
+        model->loadTestBoard(initialBoard);
+    } else {
+        int minClues;
+        if (difficulty == "easy")
+            minClues = 45;
+        else if (difficulty == "medium")
+            minClues = 35;
+        else
+            minClues = 25;
+        model->generateRandom(minClues);
     }
 
-    model->loadTestBoard(initialBoard);
+
 }
 
 

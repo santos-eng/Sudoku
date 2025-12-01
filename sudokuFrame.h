@@ -38,6 +38,8 @@ public:
 
     void clearBoard();
     void loadTestBoard(const QString& initialBoard);
+    void generateRandom(int minClues);
     std::chrono::duration<double, std::milli> autoSolve();
+
 };
 #endif // SUDOKUFRAME_H

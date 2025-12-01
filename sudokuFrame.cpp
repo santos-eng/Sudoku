@@ -134,7 +134,7 @@ void SudokuFrame::loadTestBoard(const QString& initialBoard) {
         int value = c.digitValue();
 
         board[row][col] = value;
-        fixed[row][col] = value != 0; // non-zero will fix cell.
+        fixed[row][col] = (value != 0); // non-zero will fix cell.
 
         col++;
         if (col == 9) {
@@ -144,8 +144,13 @@ void SudokuFrame::loadTestBoard(const QString& initialBoard) {
                 break;
         }
     }
-
     emit dataChanged(this->index(0,0),this->index(8,8)); // Indicate that the whole board needs refreshing
+}
+
+
+void SudokuFrame::generateRandom(int minClues) {
+    clearBoard();
+    Generator::generateUnique(board,fixed,minClues);
 }
 
 std::chrono::duration<double, std::milli> SudokuFrame::autoSolve() {
@@ -165,6 +170,8 @@ std::chrono::duration<double, std::milli> SudokuFrame::autoSolve() {
     }
     return diff;
 }
+
+
 
 
 
