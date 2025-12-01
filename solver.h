@@ -8,13 +8,21 @@ class Solver
     std::array<int,9> rowStore{};
     std::array<int,9> colStore{};
     std::array<int,9> boxStore{};
+
+    bool foundOneSol = false;
     bool validLookup(const int r, const int c, const int bit) const;
     bool backtrack(std::array<std::array<int,9>,9>& board, int r, int c);
+    void cleanBitmasks();
+    void loadBitmasks(std::array<std::array<int,9>,9>& board);
+    bool checkMultiSol(std::array<std::array<int,9>,9>& board, int r, int c);
 public:
     Solver();
 
     //Function used for solving the algoirthm, were speed is important
     bool backtrackSolve(std::array<std::array<int,9>,9>& board);
+
+    // Assert if only one valid solution exists, which is official standard
+    bool hasUniqueSol(std::array<std::array<int,9>,9>& board);
 };
 
 #endif // SOLVER_H
