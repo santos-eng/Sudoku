@@ -37,7 +37,7 @@ public:
     void setView(QAbstractItemView* v);
 
     void clearBoard();
-    void loadFromInitConditions(const QString& initialBoard);
+    void loadTestBoard(const QString& initialBoard);
     std::chrono::duration<double, std::milli> autoSolve();
 };
 #endif // SUDOKUFRAME_H

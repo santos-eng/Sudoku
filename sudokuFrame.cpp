@@ -124,7 +124,7 @@ void SudokuFrame::clearBoard() {
 
 }
 
-void SudokuFrame::loadFromInitConditions(const QString& initialBoard) {
+void SudokuFrame::loadTestBoard(const QString& initialBoard) {
     clearBoard();
 
     int row = 0, col = 0;

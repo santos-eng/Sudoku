@@ -59,16 +59,19 @@ void grid::on_loadPuzzleBtn_clicked()
     else
         difficulty = "hard";
 
-    QString folder = QCoreApplication::applicationDirPath() + "/testPuzzles/" + difficulty + ".txt";
+    QString initialBoard{};
+    if (ui->testBoardCheck->isChecked()) {
+        QString folder = QCoreApplication::applicationDirPath() + "/testPuzzles/" + difficulty + ".txt";
 
-    QFile file(folder);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QMessageBox::warning(this, "Error", "Couldn't open puzzle file:\n" + folder);
-        return;
+        QFile file(folder);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QMessageBox::warning(this, "Error", "Couldn't open puzzle file:\n" + folder);
+            return;
+        }
+        initialBoard = file.readAll();
     }
 
-    QString initialBoard = file.readAll();
-    model->loadFromInitConditions(initialBoard);
+    model->loadTestBoard(initialBoard);
 }
 
 

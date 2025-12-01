@@ -125,6 +125,19 @@
      <string>ms</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="testBoardCheck">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>190</y>
+      <width>171</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Use Hardcoded Test Board</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
