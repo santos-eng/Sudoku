@@ -34,7 +34,7 @@ public:
     // What is allowed in each cell
     Qt::ItemFlags flags(const QModelIndex &index) const override;
 
-    void setView(QAbstractItemView* view);
+    void setView(QAbstractItemView* v);
 
     void clearBoard();
     void loadFromInitConditions(const QString& initialBoard);

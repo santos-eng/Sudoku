@@ -76,6 +76,9 @@ void grid::on_solveBtn_clicked()
 {
     SudokuFrame* model = qobject_cast<SudokuFrame*>(ui->tableView->model());
     std::chrono::duration<double, std::milli> solveTime = model->autoSolve();
-    ui->autoSolveTimeLbl->setText(QString::number(solveTime.count())); // count is number of millisecond ticks
+    if (solveTime.count() < 0)
+        ui->autoSolveTimeLbl->setText(QString("INVALID"));
+    else
+        ui->autoSolveTimeLbl->setText(QString::number(solveTime.count())); // count is number of millisecond ticks
 }
 

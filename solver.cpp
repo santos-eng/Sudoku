@@ -50,7 +50,7 @@ bool Solver::backtrack(std::array<std::array<int,9>,9>& board, int r, int c) {
 }
 
 // My implementation of Leetcode 37, Sudoku Solver
-void Solver::backtrackSolve(std::array<std::array<int,9>,9>& board) {
+bool Solver::backtrackSolve(std::array<std::array<int,9>,9>& board) {
     // clean old bit masks
     for (int i = 0; i < 9; i++) {
         rowStore[i] = 0;
@@ -72,7 +72,7 @@ void Solver::backtrackSolve(std::array<std::array<int,9>,9>& board) {
             boxStore[boxID] |= bit;
         }
     }
-    backtrack(board,0,0);
+    return backtrack(board,0,0);
 }
 
 

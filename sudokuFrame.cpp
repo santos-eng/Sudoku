@@ -1,5 +1,7 @@
 #include "sudokuFrame.h"
 #include "solver.h"
+#include "generator.h"
+#include <QMessageBox>
 #include <chrono>
 
 SudokuFrame::SudokuFrame(QObject *parent)
@@ -107,8 +109,8 @@ Qt::ItemFlags SudokuFrame::flags(const QModelIndex &index) const {
     return Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable;
 }
 
-void SudokuFrame::setView(QAbstractItemView* view) {
-    this->view = view;
+void SudokuFrame::setView(QAbstractItemView* v) {
+    this->view = v;
 }
 
 void SudokuFrame::clearBoard() {
@@ -148,14 +150,19 @@ void SudokuFrame::loadFromInitConditions(const QString& initialBoard) {
 
 std::chrono::duration<double, std::milli> SudokuFrame::autoSolve() {
     Solver s;
+
     const auto startTime = std::chrono::high_resolution_clock::now();
-    s.backtrackSolve(board);
+    bool solved = s.backtrackSolve(board);
     const auto endTime = std::chrono::high_resolution_clock::now();
 
     state = Validator::isValid(board,invalRow,invalCol,invalBox); // update colours
     emit dataChanged(this->index(0,0),this->index(8,8));
 
     std::chrono::duration<double, std::milli> diff = endTime - startTime;
+    if (!solved) {
+        QMessageBox::critical(nullptr, "Sudoku Error", "No solution exists!");
+        return -diff;
+    }
     return diff;
 }
 

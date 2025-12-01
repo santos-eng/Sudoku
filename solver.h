@@ -14,7 +14,7 @@ public:
     Solver();
 
     //Function used for solving the algoirthm, were speed is important
-    void backtrackSolve(std::array<std::array<int,9>,9>& board);
+    bool backtrackSolve(std::array<std::array<int,9>,9>& board);
 };
 
 #endif // SOLVER_H
