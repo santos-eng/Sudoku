@@ -72,6 +72,13 @@ void Solver::loadBitmasks(std::array<std::array<int,9>,9>& board) {
     }
 }
 
+void Solver::setBit(const int r, const int c, const int bit) {
+    rowStore[r] |= bit;
+    colStore[c] |= bit;
+    int boxID = (r/3) * 3 + (c/3);
+    boxStore[boxID] |= bit;
+}
+
 // My implementation of Leetcode 37, Sudoku Solver
 bool Solver::backtrackSolve(std::array<std::array<int,9>,9>& board) {
     cleanBitmasks();

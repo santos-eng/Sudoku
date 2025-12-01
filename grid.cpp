@@ -78,7 +78,8 @@ void grid::on_loadPuzzleBtn_clicked()
             minClues = 35;
         else
             minClues = 25;
-        model->generateRandom(minClues);
+        std::chrono::duration<double, std::milli> genTime = model->generateRandom(minClues);
+        ui->genTimeLbl->setText(QString::number(genTime.count()));
     }
 
 

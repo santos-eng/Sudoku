@@ -18,6 +18,7 @@ public:
     bool validLookup(const int r, const int c, const int bit) const;
     void cleanBitmasks();
     void loadBitmasks(std::array<std::array<int,9>,9>& board);
+    void setBit(const int r, const int c, const int bit);
 
     //Function used for solving the algoirthm, were speed is important
     bool backtrackSolve(std::array<std::array<int,9>,9>& board);

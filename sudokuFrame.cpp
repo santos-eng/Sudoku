@@ -148,9 +148,18 @@ void SudokuFrame::loadTestBoard(const QString& initialBoard) {
 }
 
 
-void SudokuFrame::generateRandom(int minClues) {
+std::chrono::duration<double, std::milli> SudokuFrame::generateRandom(int minClues) {
     clearBoard();
+
+    const auto startTime = std::chrono::high_resolution_clock::now();
     Generator::generateUnique(board,fixed,minClues);
+    const auto endTime = std::chrono::high_resolution_clock::now();
+
+    state = Validator::isValid(board,invalRow,invalCol,invalBox); // update colours
+    emit dataChanged(this->index(0,0),this->index(8,8));
+
+    std::chrono::duration<double, std::milli> diff = endTime - startTime;
+    return diff;
 }
 
 std::chrono::duration<double, std::milli> SudokuFrame::autoSolve() {
