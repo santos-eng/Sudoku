@@ -85,3 +85,13 @@ void grid::on_solveBtn_clicked()
         ui->autoSolveTimeLbl->setText(QString::number(solveTime.count())); // count is number of millisecond ticks
 }
 
+
+void grid::on_testBoardCheck_checkStateChanged(const Qt::CheckState &arg)
+{
+    if (arg == Qt::CheckState::Checked) {
+        ui->loadPuzzleBtn->setText("Load Test Sudoku");
+    } else {
+        ui->loadPuzzleBtn->setText("Generate Random Sudoku");
+    }
+}
+

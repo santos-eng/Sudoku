@@ -24,6 +24,8 @@ private slots:
 
     void on_solveBtn_clicked();
 
+    void on_testBoardCheck_checkStateChanged(const Qt::CheckState &arg1);
+
 private:
     Ui::grid *ui;
 };

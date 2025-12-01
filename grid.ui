@@ -68,12 +68,12 @@
      <rect>
       <x>770</x>
       <y>170</y>
-      <width>111</width>
+      <width>161</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
-     <string>Load Puzzle</string>
+     <string>Generate Random Sudoku</string>
     </property>
    </widget>
    <widget class="QPushButton" name="solveBtn">
