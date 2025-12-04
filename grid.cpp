@@ -3,14 +3,6 @@
 #include "sudokuFrame.h"
 #include <chrono>
 
-// To do, make it so that the highlighted cell is a different colour, grey when selected or dark blue if a set cell
-// Insert the dark colum borders
-
-// Then recognise issues with red highlight
-
-// Recognise Success
-
-
 grid::grid(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::grid)
@@ -81,10 +73,7 @@ void grid::on_loadPuzzleBtn_clicked()
         std::chrono::duration<double, std::milli> genTime = model->generateRandom(minClues);
         ui->genTimeLbl->setText(QString::number(genTime.count()));
     }
-
-
 }
-
 
 void grid::on_solveBtn_clicked()
 {
@@ -96,7 +85,6 @@ void grid::on_solveBtn_clicked()
         ui->autoSolveTimeLbl->setText(QString::number(solveTime.count())); // count is number of millisecond ticks
 }
 
-
 void grid::on_testBoardCheck_checkStateChanged(const Qt::CheckState &arg)
 {
     if (arg == Qt::CheckState::Checked) {
@@ -105,4 +93,3 @@ void grid::on_testBoardCheck_checkStateChanged(const Qt::CheckState &arg)
         ui->loadPuzzleBtn->setText("Generate Random Sudoku");
     }
 }
-

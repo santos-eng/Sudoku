@@ -2,9 +2,6 @@
 #include <vector>
 #include <algorithm>
 
-
-
-
 Generator::Generator() {}
 
 bool Generator::fillBoard(std::array<std::array<int,9>,9>& board, int r, int c,

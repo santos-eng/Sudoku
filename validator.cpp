@@ -29,7 +29,6 @@ Validator::State Validator::isValid(const std::array<std::array<int,9>,9>& board
                 state = State::Invalid;
                 invalCol[c] = true;
             }
-
             int boxId = (r/3) * 3 + c/3;
             if (!boxSet[boxId].insert(val).second) {
                 state = State::Invalid;

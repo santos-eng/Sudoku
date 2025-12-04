@@ -1,6 +1,5 @@
 #include "solver.h"
 
-
 Solver::Solver() {}
 
 bool Solver::validLookup(const int r, const int c, const int bit) const {
@@ -96,7 +95,6 @@ bool Solver::checkMultiSol(std::array<std::array<int,9>,9>& board, int r, int c)
             return true; // multiple solns found
         foundOneSol = true;
         return false; // search to see if an additional solution can be found
-
     }
 
     if (board[r][c] != 0)
@@ -123,13 +121,11 @@ bool Solver::checkMultiSol(std::array<std::array<int,9>,9>& board, int r, int c)
     return false; // only one sol exists
 }
 
-
 bool Solver::hasUniqueSol(std::array<std::array<int,9>,9>& board) {
     foundOneSol = false;
     cleanBitmasks();
     loadBitmasks(board);
     std::array<std::array<int,9>,9> boardCopy = board;
-
 
     bool multiSol = checkMultiSol(boardCopy,0,0);
     return foundOneSol && !multiSol; // have to check that atleast one sol found incase init board invalid

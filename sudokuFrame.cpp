@@ -8,7 +8,6 @@ SudokuFrame::SudokuFrame(QObject *parent)
     : QAbstractTableModel{parent}
 {}
 
-
 int SudokuFrame::rowCount(const QModelIndex &parent) const {
     return 9;
 }
@@ -22,7 +21,6 @@ bool SudokuFrame::cellInvalid(const int r, const int c) const {
     return invalRow[r] || invalCol[c] || invalBox[boxId];
 }
 
-// Cell appearance
 QVariant SudokuFrame::data(const QModelIndex &index, int role) const {
     int r = index.row(), c = index.column();
 
@@ -76,12 +74,10 @@ QVariant SudokuFrame::data(const QModelIndex &index, int role) const {
         return font;
     }
 
-
     if (role == Qt::DisplayRole) {
         int value = board[r][c];
-        return value == 0 ? QVariant() : QVariant(value); // display nothing for 0 only show 1-9
+        return value == 0 ? QVariant() : QVariant(value); // display nothing for 0 only show digits 1-9
     }
-
     return {};
 }
 
@@ -147,7 +143,6 @@ void SudokuFrame::loadTestBoard(const QString& initialBoard) {
     emit dataChanged(this->index(0,0),this->index(8,8)); // Indicate that the whole board needs refreshing
 }
 
-
 std::chrono::duration<double, std::milli> SudokuFrame::generateRandom(int minClues) {
     clearBoard();
 
@@ -155,7 +150,7 @@ std::chrono::duration<double, std::milli> SudokuFrame::generateRandom(int minClu
     Generator::generateUnique(board,fixed,minClues);
     const auto endTime = std::chrono::high_resolution_clock::now();
 
-    state = Validator::isValid(board,invalRow,invalCol,invalBox); // update colours
+    state = Validator::isValid(board,invalRow,invalCol,invalBox); // update board colours
     emit dataChanged(this->index(0,0),this->index(8,8));
 
     std::chrono::duration<double, std::milli> diff = endTime - startTime;
@@ -166,6 +161,7 @@ std::chrono::duration<double, std::milli> SudokuFrame::autoSolve() {
     Solver s;
     if (state == Validator::State::Complete)
         return std::chrono::duration<double, std::milli> {0};
+
     const auto startTime = std::chrono::high_resolution_clock::now();
     bool solved = s.backtrackSolve(board);
     const auto endTime = std::chrono::high_resolution_clock::now();
