@@ -164,7 +164,8 @@ std::chrono::duration<double, std::milli> SudokuFrame::generateRandom(int minClu
 
 std::chrono::duration<double, std::milli> SudokuFrame::autoSolve() {
     Solver s;
-
+    if (state == Validator::State::Complete)
+        return std::chrono::duration<double, std::milli> {0};
     const auto startTime = std::chrono::high_resolution_clock::now();
     bool solved = s.backtrackSolve(board);
     const auto endTime = std::chrono::high_resolution_clock::now();
