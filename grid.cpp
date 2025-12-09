@@ -8,6 +8,38 @@ grid::grid(QWidget *parent)
     , ui(new Ui::grid)
 {
     ui->setupUi(this); // contains pointers to the widgets
+    this->setStyleSheet(R"(
+        QPushButton {
+            background-color: #2f2f2f;
+            color: #eee;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            border: 1px solid #444;
+        }
+
+        QPushButton:hover {
+            background-color: #3c3c3c;
+        }
+
+        QPushButton:pressed {
+            background-color: #222;
+        }
+        QRadioButton {
+            spacing: 6px;
+            font-size: 13px;
+        }
+
+        QCheckBox {
+            spacing: 6px;
+            font-size: 13px;
+        }
+
+        QLabel {
+            font-size: 13px;
+            font-weight: bold;
+        }
+    )");
 
     ui->easyRadio->setChecked(true);
 
