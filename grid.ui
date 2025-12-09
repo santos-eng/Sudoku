@@ -130,12 +130,12 @@
      <rect>
       <x>770</x>
       <y>190</y>
-      <width>171</width>
+      <width>201</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
-     <string>Use Hardcoded Test Board</string>
+     <string>Use Test Board</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">

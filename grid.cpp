@@ -40,6 +40,7 @@ grid::grid(QWidget *parent)
             font-weight: bold;
         }
     )");
+    this->setWindowTitle("Sudoku");
 
     ui->easyRadio->setChecked(true);
 

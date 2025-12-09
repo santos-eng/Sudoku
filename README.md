@@ -45,28 +45,37 @@ Sudoku has been built with:
 ## Getting Started
 
 ### Prerequisites
+If building and modifying the project:
+* Qt 6
+* C++ Compiler
+* Git
 
-* Visual Studio
 
-
-### Installation
+### Installation Options
 
 #### Qt Project
 1. Clone the repo
    ```sh
    git clone https://github.com/santos-eng/Sudoku.git
    ```
-2. 
+2. Open Qt Creator and open project by clicking on the project file.
+3. Configure the project depending on your system.
+4. Click run to start the project. 
 
 #### .exe File (Windows Only)
 1. Download the latest release ZIP file which contains the executable.
 2. Extract the folder to any location on your computer.
-3. Double click the .exe file to run.
+3. Double click the `Sudoku.exe` file to run.
 
 ## Usage
-![Demo-Gif]()
+![Demo-Gif](https://github.com/santos-eng/Sudoku/raw/main/readme_media/demo.gif)
 
-* 
+### Navigation
+<p align="center">
+  <img src="readme_media/keyUI.png" width="600">
+</p>
+
+in progress
 
 ## Future Improvements
 - [x] MVP
