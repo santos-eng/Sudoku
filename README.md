@@ -84,25 +84,49 @@ If building and modifying the project:
     - Using the test boards checkbox selects a hardcoded Sudoku puzzle.
 - Both puzzle generation and auto solve functionality have corresponding timers.
 
-### Validation
+### Violations
 There are three cases for Sudoku violations:
 
 #### Row Violation
 There are duplicate numbers in the range [1,9] in the same row:
 <p align="center">
-  <img src="readme_media/rowViol.png" width="600">
+  <img src="readme_media/rowViol.png" width="400">
 </p>
 
 #### Column Violation
 There are duplicate numbers in the range [1,9] in the same column:
 <p align="center">
-  <img src="readme_media/colViol.png" width="600">
+  <img src="readme_media/colViol.png" width="400">
 </p>
 
 #### Box Violation
 There are duplicate numbers in the range [1,9] in the same box:
 <p align="center">
-  <img src="readme_media/boxViol.png" width="600">
+  <img src="readme_media/boxViol.png" width="400">
+</p>
+
+It is possible to have numerous violation in play at once:
+<p align="center">
+  <img src="readme_media/multiViolation.png" width="400">
+</p>
+
+### Solving
+Completing the board will be shown by the entire board lighting up green!
+<p align="center">
+  <img src="readme_media/complete.png" width="400">
+</p>
+
+Attemping to autosolve the Sudoku after manually entering values that are not part of the unqiue solution leads to an error.
+In the following example, the 6 in the bottom-middle box was located in its lower left cell in the complete array from earlier.
+Moving this 6 to a new position after clearing some space, will dissallow the autosolver to complete its job.
+<p align="center">
+  <img src="readme_media/error.png" width="400">
+</p>
+
+If the autosolve is used on a Sudoku that has a possible solution considering the remaining cells, it will complete it and 
+record the time to complete the solve in ms.
+<p align="center">
+  <img src="readme_media/autosolve.png" width="400">
 </p>
 
 ## Future Improvements
