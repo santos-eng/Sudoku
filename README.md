@@ -75,7 +75,35 @@ If building and modifying the project:
   <img src="readme_media/keyUI.png" width="600">
 </p>
 
-in progress
+- The shaded cell on the grid represents your currently selected prosition.
+    - Navigate the cells using the arrow keys or select by clicking on desired cell.
+- Enter a valid number 1 through 9, using 0 to clear a cell.
+- The top right radio buttons determine puzzle difficulty.
+- Generate a new puzzle with the corresponding button.
+    - Default generation is random with difficulty determined by the radio buttons.
+    - Using the test boards checkbox selects a hardcoded Sudoku puzzle.
+- Both puzzle generation and auto solve functionality have corresponding timers.
+
+### Validation
+There are three cases for Sudoku violations:
+
+#### Row Violation
+There are duplicate numbers in the range [1,9] in the same row:
+<p align="center">
+  <img src="readme_media/rowViol.png" width="600">
+</p>
+
+#### Column Violation
+There are duplicate numbers in the range [1,9] in the same column:
+<p align="center">
+  <img src="readme_media/colViol.png" width="600">
+</p>
+
+#### Box Violation
+There are duplicate numbers in the range [1,9] in the same box:
+<p align="center">
+  <img src="readme_media/boxViol.png" width="600">
+</p>
 
 ## Future Improvements
 - [x] MVP
