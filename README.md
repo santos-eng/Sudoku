@@ -120,13 +120,13 @@ Attemping to autosolve the Sudoku after manually entering values that are not pa
 In the following example, the 6 in the bottom-middle box was located in its lower left cell in the complete array from earlier.
 Moving this 6 to a new position after clearing some space, will dissallow the autosolver to complete its job.
 <p align="center">
-  <img src="readme_media/error.png" width="400">
+  <img src="readme_media/error.png" width="600">
 </p>
 
 If the autosolve is used on a Sudoku that has a possible solution considering the remaining cells, it will complete it and 
 record the time to complete the solve in ms.
 <p align="center">
-  <img src="readme_media/autosolve.png" width="400">
+  <img src="readme_media/autosolve.png" width="600">
 </p>
 
 ## Future Improvements
